@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "github.com/t10471/go-examples/grpc-examples/go/proto";
+
+package other;
+
+service Other {
+    rpc CallOther (OtherRequest) returns (OtherReply) {}
+    rpc CallOtherV2 (OtherRequest) returns (OtherReply) {}
+}
+
+message OtherRequest {
+    string name = 1;
+}
+
+message OtherReply {
+    string message = 1;
+}

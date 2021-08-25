@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "grpc-examples"
+version = "0.1.0"
+description = ""
+authors = ["t10471 <t104711202@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+grpcio = "^1.39.0"
+grpcio-tools = "^1.39.0"
+fire = "^0.4.0"
+
+[tool.poetry.dev-dependencies]
+pysen = {version = "0.9.1", extras = ["lint"]}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pysen]
+version = "0.9"
+
+[tool.pysen.lint]
+enable_black = true
+enable_flake8 = true
+enable_isort = true
+enable_mypy = true
+mypy_preset = "strict"
+line_length = 120
+
+[tool.pysen.lint.source]
+includes = ["."]
+excludes = ["proto/", ".venv/"]
+
+[[tool.pysen.lint.mypy_targets]]
+paths = ["."]
