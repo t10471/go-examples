@@ -44,7 +44,7 @@ func HWSimpleMain(myAddress, otherAddress string, unwrapError bool) error {
 type hwSimple struct {
 	pb.UnimplementedGreeterServer
 	otherAddress string
-	unwrapError bool
+	unwrapError  bool
 }
 
 func (s *hwSimple) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
@@ -71,7 +71,6 @@ func (s *hwSimple) callOther(ctx context.Context, name string) (string, error) {
 	c := pb.NewOtherClient(conn)
 
 	var retStr string
-	var retStrV2 string
 	eg, ctx := errgroup.WithContext(ctx)
 	eg.Go(func() (err error) {
 		r, err := c.CallOther(ctx, &pb.OtherRequest{Name: name})
@@ -85,7 +84,7 @@ func (s *hwSimple) callOther(ctx context.Context, name string) (string, error) {
 			}
 			log.Printf("could not call other: %v", err)
 			return xerrors.Errorf("failed to CallOther :%w", err)
-			//return err
+			// return err
 		}
 		log.Printf("CallOther: %s", r.GetMessage())
 		retStr = r.GetMessage()
@@ -107,7 +106,6 @@ func (s *hwSimple) callOther(ctx context.Context, name string) (string, error) {
 			return xerrors.Errorf("failed to CallOtherV2 :%w", err)
 		}
 		log.Printf("CallOtherV2: %s", r.GetMessage())
-		retStrV2 = r.GetMessage()
 		return nil
 
 	})
@@ -132,4 +130,3 @@ func toGRPCError(err error) error {
 	}
 	return toGRPCError(unwrappedErr)
 }
-
