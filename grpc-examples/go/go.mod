@@ -1,6 +1,6 @@
 module github.com/t10471/go-examples/grpc-examples/go
 
-go 1.16
+go 1.19
 
 require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
