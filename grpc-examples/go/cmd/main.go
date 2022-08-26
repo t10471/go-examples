@@ -121,6 +121,34 @@ func main() {
 					)
 				},
 			},
+			{
+				Name: "cancel-client",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "address",
+						Value: "localhost:50055",
+					},
+				},
+				Action: func(c *cli.Context) error {
+					return client.CancelMain(
+						c.String("address"),
+					)
+				},
+			},
+			{
+				Name: "cancel-server",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "address",
+						Value: "localhost:50055",
+					},
+				},
+				Action: func(c *cli.Context) error {
+					return server.CancelMain(
+						c.String("address"),
+					)
+				},
+			},
 		},
 	}
 
