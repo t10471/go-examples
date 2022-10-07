@@ -149,6 +149,34 @@ func main() {
 					)
 				},
 			},
+			{
+				Name: "simple-client",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "address",
+						Value: "localhost:50056",
+					},
+				},
+				Action: func(c *cli.Context) error {
+					return client.SimpleMain(
+						c.String("address"),
+					)
+				},
+			},
+			{
+				Name: "simple-server",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:  "address",
+						Value: "localhost:50056",
+					},
+				},
+				Action: func(c *cli.Context) error {
+					return server.SimpleMain(
+						c.String("address"),
+					)
+				},
+			},
 		},
 	}
 
